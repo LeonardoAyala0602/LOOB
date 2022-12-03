@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1063734081082",
+    "project_id": "lost-objects-1ca7c",
+    "storage_bucket": "lost-objects-1ca7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063734081082:android:a61513f68fd32207642703",
+        "android_client_info": {
+          "package_name": "com.example.loob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063734081082-r6mc6kfo9ttdn2noivmcr994s95qmvta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA191uhNhNwFeUklJpdpvXzPlNuF1Bd5xY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063734081082-r6mc6kfo9ttdn2noivmcr994s95qmvta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
