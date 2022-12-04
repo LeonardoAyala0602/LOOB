@@ -1,16 +1,98 @@
 package com.example.loob.admin;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.loob.R;
+import com.example.loob.dto.UsuarioDTO;
+import com.example.loob.login.LoginActivity;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class ListaClientesActivity extends AppCompatActivity {
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    FirebaseAuth firebaseAuth;
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_clientes);
+        firebaseAuth = FirebaseAuth.getInstance();
+        //DRAWER
+        drawerLayout = findViewById(R.id.drawer_layout_admin);
+        navigationView = findViewById(R.id.nav_view_admin);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(ListaClientesActivity.this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.d("mensaje","ENTRA AQUí");
+                switch (item.getItemId()){
+                    case R.id.btnListarObjetos:
+                        Toast.makeText(ListaClientesActivity.this, "Listar", Toast.LENGTH_SHORT).show();
+                        Intent intent =  new Intent(ListaClientesActivity.this, ListaObjetosActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.btnSolicitudes:
+                        Toast.makeText(ListaClientesActivity.this, "Solicitudes", Toast.LENGTH_SHORT).show();
+                        Intent intent1 =  new Intent(ListaClientesActivity.this, ListaSolicitudesActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.btnUsuarios:
+                        Toast.makeText(ListaClientesActivity.this, "Usuarios", Toast.LENGTH_SHORT).show();
+                        Intent intent2 =  new Intent(ListaClientesActivity.this, ListaClientesActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.btnLogOut:
+                        Toast.makeText(ListaClientesActivity.this, "LogOut", Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signOut();
+                        Intent intent3 =  new Intent(ListaClientesActivity.this, LoginActivity.class);
+                        startActivity(intent3);
+                        finish();
+                        break;
+                }
+                return false;
+            }
+        });
+        ArrayList<UsuarioDTO> list = new ArrayList<>();
+        UsuarioDTO userDTO = new UsuarioDTO();
+        userDTO.setCorreo("Juan Carlos");
+        userDTO.setDNI("74229427");
+        list.add(userDTO);
+        //VISTA
+        ListaClientesAdapter adapter = new ListaClientesAdapter();
+        adapter.setListaUsuarios(list);
+        adapter.setContext(ListaClientesActivity.this);
+
+        RecyclerView recyclerView = findViewById(R.id.recycleViewUsuarios);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ListaClientesActivity.this));
     }
 }
