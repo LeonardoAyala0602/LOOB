@@ -90,7 +90,7 @@ public class RegistroActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             UsuarioDTO usuarioDTO = new UsuarioDTO(codigoPUCP.getText().toString(),email.getText().toString(),dni.getText().toString(),ocupacion.getText().toString(),"ROL_USER");
-                            firebaseDatabase.getReference().child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(usuarioDTO).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(usuarioDTO).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
