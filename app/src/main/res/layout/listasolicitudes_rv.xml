@@ -84,6 +84,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:ems="10"
+                            android:enabled="false"
                             android:gravity="start|top"
                             android:inputType="textMultiLine" />
                     </LinearLayout>
