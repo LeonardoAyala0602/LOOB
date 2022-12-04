@@ -6,127 +6,122 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LOOB"
         tools:targetApi="31">
         <activity
-            android:name=".HistorialActivity"
+            android:name=".cliente.HistorialActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SolicitudesActivity"
+            android:name=".cliente.SolicitudesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".IngresarSolicitudActivity"
+            android:name=".cliente.IngresarSolicitudActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DetallesActivity"
+            android:name=".cliente.DetallesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ListaClienteObjetosActivity"
+            android:name=".cliente.ListaClienteObjetosActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ListarObjetosActivity"
+            android:name=".cliente.EditarPerfilActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditarPerfilActivity"
+            android:name=".cliente.PerfilActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PerfilActivity"
+            android:name=".admin.ListaClientesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ListaClientesActivity"
+            android:name=".admin.RechazoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RechazoActivity"
+            android:name=".admin.UbicacionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".UbicacionActivity"
+            android:name=".admin.ListaSolicitudesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ListaSolicitudesActivity"
+            android:name=".admin.EditarObjetoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditarObjetoActivity"
+            android:name=".admin.AgregarObjetoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AgregarObjetoActivity"
+            android:name=".admin.ListaObjetosActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ListaObjetosActivity"
-            android:exported="false">
+            android:name=".login.OlvidarConstrasenaActivity"
+            android:exported="false"
+            android:parentActivityName=".login.LoginActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".OlvidarConstrasenaActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".RegistroActivity"
-            android:exported="false">
+            android:name=".login.RegistroActivity"
+            android:exported="false"
+            android:parentActivityName=".login.LoginActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

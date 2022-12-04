@@ -1,18 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1A711C"
+    android:gravity="center"
     tools:context=".login.LoginActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="336dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="10dp"
+                android:background="#3D9E68"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingVertical="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿No tiene un usuario?" />
+
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="162dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:gravity="center"
+                    android:text="Registrarse"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="412dp"
+                    android:layout_height="122dp"
+                    android:src="@drawable/logo_loob" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="358dp"
+                android:layout_height="247dp"
+                android:layout_margin="16dp"
+                android:layout_marginTop="10sp"
+                android:background="#3D9E68"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="Email:" />
+
+                <EditText
+                    android:id="@+id/editEmailLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/login_inputs"
+                    android:ems="8"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="Password:" />
+
+                <EditText
+                    android:id="@+id/editPasswordLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/login_inputs"
+                    android:ems="8"
+                    android:inputType="textPassword"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="123dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:gravity="center"
+                    android:text="ingresar"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textForgot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ha olvidado su contraseña?" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="App en la cual podrás encontrar objetos sin dueño   hallados dentro de la PUCP."
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exclusivo para estudiantes PUCP"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
