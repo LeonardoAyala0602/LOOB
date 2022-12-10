@@ -6,13 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.loob.R;
 import com.example.loob.dto.ObjetoDTO;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -98,6 +103,10 @@ public class ListaObjetosAdapter extends RecyclerView.Adapter<ListaObjetosAdapte
         TextView textMarca = holder.itemView.findViewById(R.id.textMarca);
         TextView textCaracteristicas = holder.itemView.findViewById(R.id.textCaracteristicas);
         TextView textIncluye = holder.itemView.findViewById(R.id.textFecha);
+        ImageView imageView = holder.itemView.findViewById(R.id.imageObjeto);
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("objetos/"+o.getId()+"/photo.jpg");
+        Glide.with(context).load(storageReference).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(imageView);
 
         textNombre.setText(o.getNombre());
         textTipo.setText(o.getTipo());

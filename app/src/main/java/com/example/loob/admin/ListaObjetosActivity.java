@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.loob.R;
@@ -28,10 +29,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class ListaObjetosActivity extends AppCompatActivity {
+public class ListaObjetosActivity extends AppCompatActivity{
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -39,6 +42,10 @@ public class ListaObjetosActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     ArrayList<ObjetoDTO> listaObjetos = new ArrayList<>();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference();
+    ListaObjetosAdapter adapter;
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -56,6 +63,7 @@ public class ListaObjetosActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout_admin);
         navigationView = findViewById(R.id.nav_view_admin);
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(ListaObjetosActivity.this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -94,7 +102,7 @@ public class ListaObjetosActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerObjetos);
-        ListaObjetosAdapter adapter = new ListaObjetosAdapter();
+        adapter = new ListaObjetosAdapter();
         adapter.setContext(ListaObjetosActivity.this);
 
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("objetos");
@@ -104,6 +112,7 @@ public class ListaObjetosActivity extends AppCompatActivity {
                 for(DataSnapshot children : snapshot.getChildren() ){
                     ObjetoDTO actividad = children.getValue(ObjetoDTO.class);
                     actividad.setId(children.getKey());
+                    Log.d("msg",children.getKey());
                     listaObjetos.add(actividad);
                     adapter.setListaObjetos(listaObjetos);
                     recyclerView.setAdapter(adapter);
@@ -151,4 +160,5 @@ public class ListaObjetosActivity extends AppCompatActivity {
             }
         });
     }
+
 }

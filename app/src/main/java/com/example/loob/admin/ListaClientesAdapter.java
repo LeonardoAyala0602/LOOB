@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.UsuarioViewHolder>{
 
-    private ArrayList<UsuarioDTO> listaUsuarios;
+    private ArrayList<UsuarioDTO> listaUsuarios = new ArrayList<>();
     private Context context;
 
     public ArrayList<UsuarioDTO> getListaUsuarios() {

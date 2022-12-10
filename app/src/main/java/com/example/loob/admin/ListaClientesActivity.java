@@ -15,19 +15,30 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.loob.R;
+import com.example.loob.dto.ObjetoDTO;
 import com.example.loob.dto.UsuarioDTO;
 import com.example.loob.login.LoginActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class ListaClientesActivity extends AppCompatActivity {
 
+    ArrayList<UsuarioDTO> listaUsuarios = new ArrayList<>();
+    ListaClientesAdapter adapter = new ListaClientesAdapter();
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseDatabase firebaseDatabase =  FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -81,16 +92,26 @@ public class ListaClientesActivity extends AppCompatActivity {
                 return false;
             }
         });
-        ArrayList<UsuarioDTO> list = new ArrayList<>();
-        UsuarioDTO userDTO = new UsuarioDTO();
-        userDTO.setCorreo("Juan Carlos");
-        userDTO.setDNI("74229427");
-        list.add(userDTO);
         //VISTA
-        ListaClientesAdapter adapter = new ListaClientesAdapter();
-        adapter.setListaUsuarios(list);
-        adapter.setContext(ListaClientesActivity.this);
+        databaseReference.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot children : snapshot.getChildren()){
+                    if(children.child("rol").getValue(String.class).equals("ROL_USER")){
+                        UsuarioDTO tiUserDTO = children.getValue(UsuarioDTO.class);
+                        listaUsuarios.add(tiUserDTO);
+                    }
+                }
+                adapter.setListaUsuarios(listaUsuarios);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        adapter.setContext(ListaClientesActivity.this);
         RecyclerView recyclerView = findViewById(R.id.recycleViewUsuarios);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ListaClientesActivity.this));
