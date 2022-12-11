@@ -3,19 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/btnListarObjetos"
+            android:id="@+id/btnListarObjetosP"
             android:title="Listar Objetos"
             android:icon="@drawable/ic_baseline_architecture_24"/>
         <item
             android:id="@+id/btnSolicitudes"
-            android:title="Solicitudes de Reclamacion"
+            android:title="Historial de Solicitudes"
             android:icon="@drawable/ic_baseline_assignment_24"/>
     </group>
     <item android:title="Otros">
         <menu>
             <group android:checkableBehavior="single">
+
                 <item
-                    android:id="@+id/btnLogOut"
+                    android:id="@+id/btnVerPerfil"
+                    android:title="Ver Perfil"
+                    android:icon="@drawable/ic_baseline_account_circle_24"/>
+                <item
+                    android:id="@+id/btnCerrar"
                     android:title="Cerrar Sesion"
                     android:icon="@drawable/ic_baseline_close_24"/>
             </group>

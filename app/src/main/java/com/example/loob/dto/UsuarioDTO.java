@@ -21,14 +21,6 @@ public class UsuarioDTO implements Serializable {
         this.rol = rol;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public String getCodigoPUCP() {
         return codigoPUCP;
     }

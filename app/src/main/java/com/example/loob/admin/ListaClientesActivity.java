@@ -76,11 +76,6 @@ public class ListaClientesActivity extends AppCompatActivity {
                         Intent intent1 =  new Intent(ListaClientesActivity.this, ListaSolicitudesActivity.class);
                         startActivity(intent1);
                         break;
-                    case R.id.btnUsuarios:
-                        Toast.makeText(ListaClientesActivity.this, "Usuarios", Toast.LENGTH_SHORT).show();
-                        Intent intent2 =  new Intent(ListaClientesActivity.this, ListaClientesActivity.class);
-                        startActivity(intent2);
-                        break;
                     case R.id.btnLogOut:
                         Toast.makeText(ListaClientesActivity.this, "LogOut", Toast.LENGTH_SHORT).show();
                         firebaseAuth.signOut();

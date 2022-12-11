@@ -256,7 +256,7 @@ public class EditarObjetoActivity extends AppCompatActivity {
                                     }
                                 }
                                 databaseReference.child("objetos").child(objeto.getId()).setValue(objeto);
-                                Toast.makeText(EditarObjetoActivity.this, "Objeto agregado correctamente", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditarObjetoActivity.this, "Objeto editado correctamente", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(EditarObjetoActivity.this,ListaObjetosActivity.class);
                                 startActivity(intent);
                                 finish();
