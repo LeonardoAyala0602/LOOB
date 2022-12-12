@@ -61,7 +61,7 @@ public class RegistroActivity extends AppCompatActivity {
                 email.setError("Ingrese su email");
                 bool = false;
             }else{
-                if(email.getText().toString().contains("@pucp.edu.pe") || email.getText().toString().contains("@gmail.com")){
+                if(email.getText().toString().contains("@pucp.edu.pe") || email.getText().toString().contains("@pucp.pe")){
                     Toast.makeText(RegistroActivity.this, "Bienvenido Usuario PUCP", Toast.LENGTH_SHORT).show();
                 }else{
                     email.setError("Aplicacion solo valida para usuarios del dominio PUCP");

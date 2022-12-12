@@ -18,7 +18,9 @@ import android.widget.Toast;
 import com.example.loob.R;
 import com.example.loob.dto.ObjetoDTO;
 import com.example.loob.dto.SolicitudDTO;
+import com.example.loob.dto.UsuarioDTO;
 import com.example.loob.login.LoginActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +43,7 @@ public class HistorialActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
     ArrayList<SolicitudDTO> listaSolicitudes = new ArrayList<>();
+    String dni;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -99,6 +102,14 @@ public class HistorialActivity extends AppCompatActivity {
         HistorialAdapter adapter = new HistorialAdapter();
         adapter.setContext(HistorialActivity.this);
 
+        firebaseDatabase.getReference().child("users").child(firebaseAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                UsuarioDTO usuario =  dataSnapshot.getValue(UsuarioDTO.class);
+                dni = usuario.getDNI();
+            }
+        });
+
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("solicitudes");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -110,10 +121,6 @@ public class HistorialActivity extends AppCompatActivity {
                     adapter.setListaSolicitudes(listaSolicitudes);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(HistorialActivity.this));
-
-                }
-                if(listaSolicitudes.size() == 0){
-                    ((TextView) findViewById(R.id.textView18)).setText("No hay solicitudes");
                 }
             }
 
