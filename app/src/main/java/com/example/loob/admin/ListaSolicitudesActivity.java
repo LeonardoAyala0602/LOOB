@@ -109,17 +109,25 @@ public class ListaSolicitudesActivity extends AppCompatActivity {
         adapter.setAprobar(new ListaSolicitudesAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                Intent intent =  new Intent(ListaSolicitudesActivity.this, UbicacionActivity.class);
-                intent.putExtra("solicitud", adapter.getListaSolicitudes().get(position));
-                startActivity(intent);
+                if(adapter.getListaSolicitudes().get(position).getEstado().equals("pendiente")){
+                    Intent intent =  new Intent(ListaSolicitudesActivity.this, UbicacionActivity.class);
+                    intent.putExtra("solicitud", adapter.getListaSolicitudes().get(position));
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(ListaSolicitudesActivity.this, "No se puede rechazar un pedido que no este en pendiente", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         adapter.setRechazar(new ListaSolicitudesAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                Intent intent =  new Intent(ListaSolicitudesActivity.this, RechazoActivity.class);
-                intent.putExtra("solicitud", adapter.getListaSolicitudes().get(position));
-                startActivity(intent);
+                if(adapter.getListaSolicitudes().get(position).getEstado().equals("pendiente")){
+                    Intent intent =  new Intent(ListaSolicitudesActivity.this, RechazoActivity.class);
+                    intent.putExtra("solicitud", adapter.getListaSolicitudes().get(position));
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(ListaSolicitudesActivity.this, "No se puede rechazar un pedido que no este en pendiente", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
