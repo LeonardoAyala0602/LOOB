@@ -60,7 +60,7 @@ public class ListaClienteObjetosAdapter extends RecyclerView.Adapter<ListaClient
         ObjetoDTO objetoDTO;
         public ObjetosViewHolder(@NonNull View itemView){
             super(itemView);
-            Button button = itemView.findViewById(R.id.button9);
+            Button button = itemView.findViewById(R.id.btnReclamar);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -79,14 +79,23 @@ public class ListaClienteObjetosAdapter extends RecyclerView.Adapter<ListaClient
 
     @Override
     public void onBindViewHolder(ObjetosViewHolder holder, int position) {
-        ObjetoDTO d= listaObjetos.get(position);
-        holder.objetoDTO=d;
-        TextView textViewNombre= holder.itemView.findViewById(R.id.textView23);
-        textViewNombre.setText(d.getNombre());
-        ImageView imageView = holder.itemView.findViewById(R.id.imageView4);
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("objetos/"+d.getId()+"/photo.jpg");
+        ObjetoDTO o = listaObjetos.get(position);
+        holder.objetoDTO = o;
+        TextView textNombre = holder.itemView.findViewById(R.id.textNombreC);
+        TextView textTipo = holder.itemView.findViewById(R.id.textTipoC);
+        TextView textMarca = holder.itemView.findViewById(R.id.textMarcaC);
+        TextView textCaracteristicas = holder.itemView.findViewById(R.id.textCaracteristicasC);
+        TextView textIncluye = holder.itemView.findViewById(R.id.textFechaC);
+        ImageView imageView = holder.itemView.findViewById(R.id.imageObjetoC);
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("objetos/"+o.getId()+"/photo.jpg");
         Glide.with(context).load(storageReference).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(imageView);
 
+        textNombre.setText(o.getNombre());
+        textTipo.setText(o.getTipo());
+        textMarca.setText(o.getMarca());
+        textCaracteristicas.setText(o.getCaracteristicas());
+        textIncluye.setText(o.getFecha());
 
     }
 
